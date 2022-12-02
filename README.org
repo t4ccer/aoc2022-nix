@@ -1,0 +1,7 @@
+* Advent of Code 2022, but in =nix=
+
+** Running
+
+#+begin_src shell
+  nix eval -f day1
+#+end_src
