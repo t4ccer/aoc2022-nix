@@ -1,0 +1,16 @@
+name: "nix"
+on:
+  pull_request:
+  push:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: cachix/install-nix-action@v18
+      with:
+        nix_path: nixpkgs=channel:nixos-unstable
+    - run: |
+        nix eval -f . > new.nix
+        nix eval -f answers.nix > old.nix
+        diff new.nix old.nix
