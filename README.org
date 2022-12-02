@@ -3,5 +3,5 @@
 ** Running
 
 #+begin_src shell
-  nix eval -f day1
+  nix eval -f .
 #+end_src
