@@ -5,7 +5,7 @@ rec {
     sha256 = "02d97x8zkrzbmdwn28y67qq4nai7wn4wzw13l1fqpvq10kq04gw5";
   }) {};
   lib = nixpkgs.lib;
-  inherit (lib.lists) foldr head tail;
+  inherit (lib.lists) foldr head tail length filter;
   sum = foldr (a: b: a + b) 0;
   minInt = -9223372036854775807 - 1;
   max = foldr (a: b:
@@ -14,4 +14,5 @@ rec {
     else b)
   minInt;
   uncurry = f: lst: f (head lst) (head (tail lst));
+  count = f: xs: length (filter f xs);
 }
