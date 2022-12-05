@@ -15,4 +15,8 @@
     part1 = 567;
     part2 = 907;
   };
+  day5 = {
+    part1 = "JCMHLVGMG";
+    part2 = "LVMRWSSPZ";
+  };
 }
