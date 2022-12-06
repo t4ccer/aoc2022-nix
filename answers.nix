@@ -19,4 +19,8 @@
     part1 = "JCMHLVGMG";
     part2 = "LVMRWSSPZ";
   };
+  day6 = {
+    part1 = 1794;
+    part2 = 2851;
+  };
 }
