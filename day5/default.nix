@@ -50,10 +50,6 @@ let
     });
 
   getTops = st: concatStringsSep "" (map head (attrValues st));
-  headDef = def: lst:
-    if length lst == 0
-    then def
-    else head lst;
   solveWith = f: getTops (foldl' (move f) initState instructions);
   part1 = solveWith reverseList;
   part2 = solveWith (x: x);
