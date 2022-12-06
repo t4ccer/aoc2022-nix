@@ -2,11 +2,9 @@ let
   inherit (import ../aoc-utils.nix) lib;
   inherit (builtins) readFile length elem tail all substring;
   inherit (lib.strings) stringToCharacters;
+  inherit (lib.lists) unique;
   input = readFile ./input;
-  allAreDifferent = lst:
-    if (length lst <= 1)
-    then true
-    else !(all (x: elem x (tail lst)) lst) && (allAreDifferent (tail lst));
+  allAreDifferent = lst: unique lst == lst;
   go = len: str: n:
     if (allAreDifferent (stringToCharacters (substring n len str)))
     then n + len
