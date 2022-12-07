@@ -8,6 +8,7 @@ rec {
   inherit (lib.lists) foldr head tail length filter;
   sum = foldr (a: b: a + b) 0;
   minInt = -9223372036854775807 - 1;
+  maxInt = 9223372036854775807;
   max = foldr (a: b:
     if a > b
     then a
