@@ -6,4 +6,5 @@
   day5 = import ./day5;
   day6 = import ./day6;
   day7 = import ./day7;
+  day8 = import ./day8;
 }
