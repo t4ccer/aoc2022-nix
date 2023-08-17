@@ -5,13 +5,17 @@ rec {
     sha256 = "sha256:0w4wcmb641db9kw96xk513875nc3mr3mid9b5n3fg954aj9fqygw";
   }) {};
   lib = nixpkgs.lib;
-  inherit (lib.lists) foldr head tail length filter take drop;
+  inherit (lib.trivial) mod;
+  inherit (lib.lists) foldr head tail length filter take drop elemAt;
   inherit (lib.strings) splitString concatStringsSep;
 
   ### Functions
 
   # uncurry :: (a -> b -> c) -> ([a, b] -> c)
   uncurry = f: lst: f (head lst) (head (tail lst));
+
+  # uncurry3 :: (a -> b -> c -> d) -> ([a, b, c] -> d)
+  uncurry3 = f: lst: f (elemAt lst 0) (elemAt lst 1) (elemAt lst 2);
 
   ### Lists
 
@@ -56,6 +60,15 @@ rec {
     else if x < 0
     then -1
     else 1;
+
+  # gcd :: int -> int -> int
+  gcd = x: y:
+    if y == 0
+    then x
+    else gcd y (mod x y);
+
+  # lcm :: int -> int -> int
+  lcm = x: y: (x / (gcd x y)) * y;
 
   # sum :: list int -> int
   sum = foldr (a: b: a + b) 0;
