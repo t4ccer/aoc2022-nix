@@ -5,7 +5,8 @@ rec {
     sha256 = "sha256:0w4wcmb641db9kw96xk513875nc3mr3mid9b5n3fg954aj9fqygw";
   }) {};
   lib = nixpkgs.lib;
-  inherit (lib.lists) foldr head tail length filter;
+  inherit (lib.lists) foldr head tail length filter take drop;
+  inherit (lib.strings) splitString concatStringsSep;
 
   ### Functions
 
@@ -16,6 +17,21 @@ rec {
 
   # count :: (a -> bool) -> list a -> int
   count = f: xs: length (filter f xs);
+
+  # chop :: int -> list a -> list (list a)
+  chop = len: xs:
+    if length xs <= len
+    then [xs]
+    else [(take len xs)] ++ chop len (drop len xs);
+
+  # words :: string -> list string
+  words = splitString " ";
+
+  # unlines :: list string -> string
+  unlines = concatStringsSep "\n";
+
+  # lines :: string -> list string
+  lines = splitString "\n";
 
   ### Strict
 
